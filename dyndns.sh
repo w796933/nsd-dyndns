@@ -2,15 +2,15 @@
 
 . /etc/dyndns.conf
 
-REQ_IP=$(grep ${PASS} ${LOG} | tail -1 | awk '{print $2}')
+REQ_IP=$(/usr/bin/grep ${PASS} ${LOG} | /usr/bin/tail -1 | /usr/bin/awk '{print $2}')
 
 if [ -f $LAST_IP_FILE ]; then
-	LAST_IP=$(cat $LAST_IP_FILE)
+	LAST_IP=$(/bin/cat $LAST_IP_FILE)
 fi
 
 if [[ $LAST_IP != $REQ_IP ]]; then
-	cat $ZONEFILE | sed "4s/.*/${TIMESTAMP}/" | sed "s/^${SUBDOMAIN}.*/${SUBDOMAIN} IN A ${REQ_IP}/" > $ZONEFILE
+	/bin/cat $ZONEFILE | /usr/bin/sed "4s/.*/${TIMESTAMP}/" | /usr/bin/sed "s/^${SUBDOMAIN}.*/${SUBDOMAIN} IN A ${REQ_IP}/" > $ZONEFILE
 	/etc/rc.d/nsd reload
-	echo $REQ_IP > $LAST_IP_FILE
-	echo "update"
+	/bin/echo $REQ_IP > $LAST_IP_FILE
+	/bin/echo "update"
 fi
