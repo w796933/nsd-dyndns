@@ -101,26 +101,3 @@ When the script is executed e.g. via cron, the following happens:
   * As a second step, it updates the A record of you DynDNS domain (dyn.example.com in our example)
   * It then stores the new IP in the file _/tmp/last_dyndns_ip.txt_
   * Finally it reloads NSD
-
- 
-
-
-
-
-
-```
- 
-```
-
-
-
-
-```
- 
-```
-
-
-
-```
- 
-```
