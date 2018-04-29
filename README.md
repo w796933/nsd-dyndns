@@ -93,7 +93,7 @@ Don't forgert to set your own domain name and to replace the string after "?" wi
 When your router gets a new IP and therefore sends an HTTP request to your server, a similar entry should appear in your _/var/www/logs/dyndns.log_:
 
 ```
-update.axample.com 123.123.123.123 - - [29/Apr/2018:20:48:19 +0200] "GET /update.html?qwertzuiop1234567890 HTTP/1.1" 200 6
+update.example.com 123.123.123.123 - - [29/Apr/2018:20:48:19 +0200] "GET /update.html?qwertzuiop1234567890 HTTP/1.1" 200 6
 ```
 
 When the script is executed e.g. via cron, the following happens:
