@@ -70,8 +70,10 @@ Furthermore, add this zone file to your _/var/nsd/etc/nsd.conf_
 ### Configure and Install nsd-dyndns
 
   * Copy _dyndns.conf-dist_ to _/etc/dyndns.conf_
+    * _# cp dyndns.conf-dist /etc/dyndns.conf_
   * Edit _/etc/dyndns.conf_ to your needs
   * Copy _dyndns.sh_ to _/usr/local/bin/dyndns.sh_
+    * _# cp dyndns.sh /usr/local/bin/dyndns.sh_
   * Make the script executable:
     * _# chmod u+x /usr/local/bin/dyndns.sh_
   * Add _/usr/local/bin/dyndns.sh_ to your crontab
