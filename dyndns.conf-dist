@@ -1,0 +1,7 @@
+PASS="qwertzuiop1234567890"
+LOG=/var/www/logs/dyndns.log
+LAST_IP="none"
+LAST_IP_FILE=/tmp/last_dyndns_ip.txt
+TIMESTAMP=$(date +%s)
+ZONEFILE=/var/nsd/zones/dyndns.org.zone
+SUBDOMAIN="blah"
