@@ -61,7 +61,7 @@ $TTL 300
 ; A records
 @ IN A 123.123.123.123
 update IN A 123.123.123.123
-dyn IN A 123.123.123.13
+dyn IN A 123.123.123.123
 ```
 
 Don't forget to set your own domain names, name servers and ip addresses
