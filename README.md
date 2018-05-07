@@ -56,7 +56,7 @@ $TTL 300
                         )
 ; Name servers
                     IN      NS      ns1.example.com.
-                    IN      NS      ns1.example.com.
+                    IN      NS      ns2.example.com.
 
 ; A records
 @ IN A 123.123.123.123
