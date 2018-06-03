@@ -11,33 +11,59 @@ The following is required or suggested:
   * OpenBSD (or another BSD or some Linux distro) with HTTPD and NSD installed (pkg_add nsd), configured and running
   * (sub-)domain for your webserver. Needed for updating the NS record of your actual DynDNS domain.
     * In this example: _update.example.com_
-  * (sub-)domain that is updated dynamically. 
+  * (sub-)domain that is updated dynamically.
     * In this example: _dyn.example.com_
   * A router capable of sending custom GET-requests to your DynDNS server.
     * In this example: A FritzBox
- 
- ## Installation
- 
- ### Configure your HTTPD
- 
- Add the following new virtual host to your _/etc/httpd.conf_:
- 
+
+## Installation
+
+### Configure your web server
+
+#### Apache/httpd
+Add the following new virtual host to your _/etc/httpd.conf_:
+
 ```
- server "update.example.com" {
+server "update.example.com" {
         listen on $ext_addr port 80
         root "/htdocs/dyndns"
         log access dyndns.log
 }
 ```
- 
+
+#### nginx
+
+Add the following to your nginx.conf. The "access" log format isn't avaliable by default so you have to define it.
+
+```
+http {
+    ...
+    log_format access '$host $remote_addr - $remote_user [$time_local] '
+                               '"$request" $status $body_bytes_sent '
+                               '"$http_referer" "$http_user_agent" "$gzip_ratio"';
+    ...
+
+    server {
+        listen 80;
+
+        server_name update.example.com;
+
+        root /htdocs/dyndns;
+        access_log /var/www/logs/dyndns.log access;
+
+        ...
+    }
+}
+```
+
 Create an empty _update.html_:
- 
+
 ```
 # mkdir /var/www/htdocs/dyndns/
 # touch /var/www/htdocs/dyndns/update.html
 ```
 
-After reloading HTTPD, try to access http://update.example.com/update.html
+After reloading webserver, try to access http://update.example.com/update.html
 The request should show up in _/var/www/logs/dyndns.log_
 
 ### Create a zone file for dyn.example.com
